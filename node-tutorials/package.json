@@ -5,11 +5,13 @@
   "main": "1-intro.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "httpmodule":"nodemon modules/http-module.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cli-color": "^2.0.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
