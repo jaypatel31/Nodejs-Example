@@ -7,6 +7,7 @@ const productRouter = require('./routes/products');
 app.set('view engine','ejs');
 
 app.use(express.static('views'));
+app.use(express.json());
 app.use('/',mainRouter)
 app.use('/',productRouter);
 
