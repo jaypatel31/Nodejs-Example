@@ -1,3 +1,5 @@
+const ErrorHandler = require("../errors/ErrorHandler");
+
 const apiKey = (req,res,next) => {
     const api_key = "1234567";
     const userApiKey = req.query.api_key
@@ -6,7 +8,7 @@ const apiKey = (req,res,next) => {
         next();
     }
     else{
-        res.status(401).json({msg:"Invalid API Key"});
+        next(ErrorHandler.forbiddenError())
     }
     
 }
