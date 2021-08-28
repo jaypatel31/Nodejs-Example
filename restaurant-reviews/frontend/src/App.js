@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-dark bg-dark " style={{paddingLeft:"15px"}}>
         <a href="/restaurants" className="navbar-brand">
           Restaurants Reviews
         </a>
@@ -67,7 +67,7 @@ function App() {
             <Route
               path ="/login"
               render={(props)=>{
-                <Restaurants {...props} login={login}/>
+                <Login {...props} login={login}/>
               }}
             />
           </Switch>
