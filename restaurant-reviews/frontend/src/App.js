@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import {Switch, Route, Link} from "react-router-dom";
+import "./bootstrap.min.css";
 
 import AddReview from "./components/AddReview";
 import Login from "./components/Login";
@@ -47,30 +48,27 @@ function App() {
       </nav>
 
       <div className="container mt-3">
-          <Switch>
-            <Route exact path={["/","/restaurants"]} component={RestaurantsList}/>
-
-            <Route 
-              path="/restaurants/:id/review"
-              render={(props) => {
-                <AddReview {...props} user={user} />
-              }}
-            />
-
-            <Route
-              path ="/restaurants/:id"
-              render={(props)=>{
-                <Restaurants {...props} user={user}/>
-              }}
-            />
-
-            <Route
-              path ="/login"
-              render={(props)=>{
-                <Login {...props} login={login}/>
-              }}
-            />
-          </Switch>
+      <Switch>
+          <Route exact path={["/", "/restaurants"]} component={RestaurantsList} />
+          <Route 
+            path="/restaurants/:id/review"
+            render={(props) => (
+              <AddReview {...props} user={user} />
+            )}
+          />
+          <Route 
+            path="/restaurants/:id"
+            render={(props) => (
+              <Restaurants {...props} user={user} />
+            )}
+          />
+          <Route 
+            path="/login"
+            render={(props) => (
+              <Login {...props} login={login} />
+            )}
+          />
+        </Switch>
       </div>
 
     </div>
