@@ -9,7 +9,7 @@ const storeSchema = new mongoose.Schema({
         type:Number,
         required:[true,"product price name must be provided"]
     },
-    feature:{
+    featured:{
         type:Boolean,
         default:false
     },

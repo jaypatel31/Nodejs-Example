@@ -1,9 +1,25 @@
-
+import Product from "../models/product.js"
 
 export const getAllProductsStatic = async (req,res)=>{
-    res.status(200).json({msg:"products testing route"})
+    const products = await Product.find({name:""});
+    res.status(200).json({products,nbHits:products.length})
 }
 
 export const getAllProducts = async (req,res)=>{
-    res.status(200).json({msg:"products route"})
+    const {featured,company,name} = req.query
+    const queryObject = {}
+
+    if(featured){
+        queryObject.featured = (featured==="true") ? true : false;
+    }
+    if(company){
+        queryObject.company = company
+    }
+    if(name){
+        queryObject.name = {$regex:name,$options:'i'};
+    }
+    
+    const products = await Product.find(queryObject)
+
+    res.status(200).json({products,nbHits:products.length})
 }
