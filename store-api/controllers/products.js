@@ -6,7 +6,7 @@ export const getAllProductsStatic = async (req,res)=>{
 }
 
 export const getAllProducts = async (req,res)=>{
-    const {featured,company,name,sort,fields} = req.query
+    const {featured,company,name,sort,fields, numericFilters } = req.query
     const queryObject = {}
 
     if(featured){
@@ -17,6 +17,26 @@ export const getAllProducts = async (req,res)=>{
     }
     if(name){
         queryObject.name = {$regex:name,$options:'i'};
+    }
+    if(numericFilters){
+        const operatorMap = {
+            '>':"$gt",
+            ">=":"$gte",
+            "=":"$eq",
+            "<":"lt",
+            "<=":"lte",
+        }
+
+        const regEx = /\b(>|>=|=|<|<=)\b/g
+        let filters =numericFilters.replace(regEx,(match)=>`-${operatorMap[match]}-`)
+        const options = ['price','rating'];
+        filters = filters.split(",").forEach(item=>{
+            const [name,op,val] = item.split('-')
+            if(options.includes(name)){
+                queryObject[name] = {[op]:Number(val)}
+            }
+        })
+
     }
     
     
@@ -34,7 +54,6 @@ export const getAllProducts = async (req,res)=>{
 
     const page = Number(req.query.page) || 1
     const limit = Number(req.query.limit) || 10
-
 
     const products = await result.limit(limit).skip((page-1)*limit);
 
