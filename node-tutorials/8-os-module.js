@@ -13,5 +13,5 @@ const currentOS = {
     freeMem:os.freemem(),
 }
 
-console.log(currentOS)
+console.log(currentOS);
 
