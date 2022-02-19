@@ -11,5 +11,5 @@ writeFileSync(
     `\nHere is the result: ${first}, ${second}`,
     {flag: 'a' }
 );
-console.log('done with this task')
-console.log('Starting the next')
+console.log('done with this task');
+console.log('Starting the next');
